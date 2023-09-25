@@ -23,7 +23,7 @@ const VideosContainer = () => {
             <Link to={'/watch?v=' + video.id} className='mt-4 mb-3 ml-4 w-[31.95%]'>
               <VideoCards key={video.id} videosInfo={video}/>
             </Link>
-          )
+          ) 
         )}
       </div>
     )
