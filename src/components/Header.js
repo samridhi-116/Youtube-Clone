@@ -5,6 +5,7 @@ import { toggleMenu } from '../utils/appSlice';
 import { useDispatch, useSelector  } from 'react-redux';
 import { youtubeSearchAPI } from '../utils/constants';
 import { cacheResults } from '../utils/searchSlice';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
 
@@ -52,10 +53,13 @@ const Header = () => {
       <div className='flex flex-row justify-between py-2 w-[96%] mx-auto'>
         <div className='flex w-[16%] items-center'>
           <LiaBarsSolid className='p-2 w-10 h-10 text-2xl cursor-pointer hover:bg-gray-100 hover:rounded-full' onClick={() => toggleMenuHandler()}/>
-          <img 
-            src='https://vectorseek.com/wp-content/uploads/2021/01/YouTube-Logo-Vector.png' 
-            alt='yt-icon' 
-            className='w-24 h-5 mx-6'/>
+          <Link to='/'>
+            <img 
+              src='https://vectorseek.com/wp-content/uploads/2021/01/YouTube-Logo-Vector.png' 
+              alt='yt-icon' 
+              className='w-24 h-5 mx-6'/>
+          </Link>
+          
         </div>
         <div className=' w-[57%] flex flex-col'>
             <div className='flex flex-row relative'>

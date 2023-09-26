@@ -6,6 +6,7 @@ import WatchPage from './components/WatchPage';
 import Sidebar from './components/Sidebar';
 import { useSelector } from 'react-redux';
 import { Routes, Route } from 'react-router-dom';
+import Demo from './components/Demo';
 
 function App() {
   const isMenuOpen = useSelector((state) => state.app.isMenuOpen);
@@ -23,6 +24,12 @@ function App() {
             path="watch" 
             element={
                 <WatchPage />
+            } 
+        />
+        <Route 
+            path="demo" 
+            element={
+                <Demo/>
             } 
         />
       </Routes>
