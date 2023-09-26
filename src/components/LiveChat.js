@@ -54,13 +54,10 @@ const LiveChat = () => {
                     setLiveMessage(e.target.value)}
                 className=' flex-1 text-sm py-1 px-2 w-4/5 rounded-l-md border border-black'
             />
-            <span>
-                <button 
-
-                    className='px-2 border border-black py-[5px] rounded-r-md'>
-                    <VscSend className=' text-lg'/>
-                </button>
-            </span>
+            <button 
+                className='px-2 border border-black py-[5px] rounded-r-md'>
+                <VscSend className=' text-lg'/>
+            </button>
         </form>
     </div>
   )
