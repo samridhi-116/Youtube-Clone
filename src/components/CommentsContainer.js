@@ -27,6 +27,7 @@ const commentsData = [
                 },
                 text: "Nested reply to User2.",
                 timestamp: "2023-09-25T08:15:00Z",
+                replies: []
               },
               {
                 id: 5,
@@ -36,6 +37,7 @@ const commentsData = [
                 },
                 text: "Another nested reply to User2.",
                 timestamp: "2023-09-25T08:20:00Z",
+                replies: []
               },
             ],
           },
@@ -65,6 +67,7 @@ const commentsData = [
                     },
                     text: "Nested reply to User1 in User3's reply.",
                     timestamp: "2023-09-25T08:30:00Z",
+                    replies: []
                   },
                 ],
               },
@@ -78,8 +81,9 @@ const commentsData = [
           username: "User4",
           avatar: "https://static-00.iconduck.com/assets.00/user-icon-2048x2048-ihoxz4vq.png",
         },
-        text: "This is another comment with no replies.",
+        text: "In hac habitasse platea dictumst. Vivamus a turpis in mi dignissim iaculis ut nec dui. Sed a ipsum at urna malesuada interdum. Nunc sit amet elit nec eros interdum blandit. Nulla eget ipsum quis nunc bibendum gravida. ",
         timestamp: "2023-09-25T08:40:00Z",
+        replies: []
       },
       {
         id: 9,
@@ -87,7 +91,7 @@ const commentsData = [
           username: "User5",
           avatar: "https://static-00.iconduck.com/assets.00/user-icon-2048x2048-ihoxz4vq.png",
         },
-        text: "A comment with a single reply.",
+        text: "Duis sollicitudin libero nec purus sodales, nec dictum odio rhoncus. Suspendisse potenti. Proin vel semper velit. Nam suscipit, augue eu interdum tempus, urna nunc efficitur felis, at tincidunt orci nisi eu nisl. Vivamus condimentum tristique ex, eu tincidunt libero varius sed.",
         timestamp: "2023-09-25T08:45:00Z",
         replies: [
           {
@@ -107,6 +111,7 @@ const commentsData = [
                 },
                 text: "Nested reply to User6.",
                 timestamp: "2023-09-25T08:55:00Z",
+                replies: []
               },
             ],
           },
@@ -115,10 +120,10 @@ const commentsData = [
 ]
   
 const Comment = ({ data }) => {
-    const {author, text, replies} = data;
+    const { author, text } = data;
     return (
         <div className='flex mt-4'>
-            <img src={author.avatar} className='w-9 h-9'/>
+            <img src={author.avatar} alt='user' className='w-9 h-9'/>
             <div className='ml-3'>
                 <p className=' font-medium font-sans text-sm'>@{author.username}</p>
                 <p className='font-sans text-sm mt-2'>{text}</p>
@@ -127,11 +132,28 @@ const Comment = ({ data }) => {
     )
 }
 
+const CommentsList = ({ comments }) => {
+    return comments.map((comment) => (
+        <div key={comment.id}>
+            <Comment data={comment}/>
+            <div className='pl-8'>
+                {/* 
+                    so, series of this comment is what? replies... 
+                    and at the end of the day, what are replies? they are again comment list
+                    so, instead of this comment, can I call comment list? Yes
+                 */}
+                {/* <Comment key={comment.id} data={comment}/> */}
+                <CommentsList comments={comment.replies} />
+            </div>
+        </div>
+    ));
+};
+
 const CommentsContainer = () => {
   return (
-    <div className=' w-[675px] pr-6'>
+    <div className=' w-[675px] pr-6 py-4'>
         <p>Comments: </p>
-        <Comment data={commentsData[0]} />
+        <CommentsList comments={commentsData} />
     </div>
   )
 }
